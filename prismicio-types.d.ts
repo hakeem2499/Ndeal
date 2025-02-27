@@ -438,6 +438,17 @@ interface ServiceDocumentData {
   label: prismic.KeyTextField;
 
   /**
+   * image field in *service*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
    * Slice Zone field in *service*
    *
    * - **Field Type**: Slice Zone

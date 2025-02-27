@@ -3,6 +3,8 @@ import { Content, isFilled } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/Components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
+import Heading4 from "./Heading4";
+import ListHeading from "./ListHeading";
 
 /**
  * Props for `ShowCase`.
@@ -25,14 +27,33 @@ const ShowCase: FC<ShowCaseProps> = ({ slice }) => {
       )}
 
       {isFilled.richText(slice.primary.body) && (
-        <div className=" mt-6  text-balance w-full font-medium text-lg md:text-2xl">
-          <PrismicRichText  field={slice.primary.body} />
+        <div className=" mt-6  text-balance w-full font-medium text-lg ">
+          <PrismicRichText
+            components={{
+              heading4: ({ children }) => {
+
+
+                return (
+                  <Heading4 >{children}</Heading4>
+                );
+              },
+              em: ({ children }) => {
+
+
+                return (
+                  <ListHeading >{children}</ListHeading>
+                );
+              },
+
+            }}
+            field={slice.primary.body}
+          />
         </div>
       )}
 
       {isFilled.image(slice.primary.image) && (
         <div className=" glass-container mt-16 w-fit ">
-          
+
           <PrismicNextImage
             className="rounded-lg"
             field={slice.primary.image}

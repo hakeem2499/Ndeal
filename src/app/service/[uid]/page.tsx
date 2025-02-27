@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Params }) {
                     <PrismicText field={page.data.description} />
                 </p>
                 <PrismicNextImage
-                    field={page.data.icon}
+                    field={page.data.image}
                     className="rounded-lg "
                     quality={100}
                 />

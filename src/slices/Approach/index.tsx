@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { Content, isFilled } from "@prismicio/client";
+import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/Components/Bounded";
 import React from "react";
 import { PrismicNextImage } from "@prismicio/next";
@@ -20,29 +20,36 @@ const Approach: FC<ApproachProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div className="flex flex-col md:flex-row items-center mt-20">
+      {isFilled.richText(slice.primary.heading) && (
+        <h4 className="text-balance text-center text-3xl mt-[25%] md:mt-[15%] font-semibold  md:text-5xl">
+          <PrismicText field={slice.primary.heading} />
+        </h4>
+      )}
+      <div className="flex flex-col w-full md:flex-row items-center mt-20">
         {slice.primary.approaches.map((item, index) => (
           <React.Fragment key={index}>
-            {index === Math.floor(slice.items.length / 2) && (
-              <>
-
-                <div className="signal-line rotate-180 bg-gradient-to-t" />
-              </>
-            )}
-            <div className="flex flex-col items-center gap-4 ">
+            <div className="flex flex-col md:w-1/4 items-center gap-4">
               <div className="h-30 w-40">
                 <PrismicNextImage field={item.image} priority quality={100} />
               </div>
-              <PrismicRichText field={item.heading} />
-              <PrismicRichText field={item.body} />
+              <h6 className="text-xl md:text-2xl font-semibold text-center text-balance">
+
+                <PrismicText field={item.heading} />
+              </h6>
+              <p className="font-medium text-lg text-center text-balance">
+
+              <PrismicText field={item.body} />
+              </p>
             </div>
-            {index !== slice.items.length - 1 && (
+
+            {/* Render signal-line between elements, but not after the last one */}
+            {index !== slice.primary.approaches.length - 1 && (
               <div
                 className={clsx(
                   "signal-line",
-                  index >= Math.floor(slice.items.length / 2)
+                  index >= Math.floor(slice.primary.approaches.length / 2)
                     ? "rotate-180"
-                    : "rotate-0",
+                    : "rotate-0"
                 )}
               />
             )}
