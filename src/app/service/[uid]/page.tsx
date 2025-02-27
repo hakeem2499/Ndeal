@@ -28,8 +28,8 @@ export default async function Page({ params }: { params: Params }) {
         <Bounded>
             <div className=" mt-16 grid place-items-center text-center">
                 <p className="text-lg uppercase text-brand">Services</p>
-                <h1 className="text-5xl text-center text-balance font-medium">
-                    <PrismicText field={page.data.service} />
+                <h1 className="text-5xl text-center text-balance font-semibold mt-4">
+                    <PrismicText field={page.data.heading} />
                 </h1>
                 <p className="mb-4 mt-8 max-w-xl font-medium text-lg">
                     <PrismicText field={page.data.description} />

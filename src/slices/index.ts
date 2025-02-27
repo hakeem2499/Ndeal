@@ -7,6 +7,7 @@ export const components = {
   blogs: dynamic(() => import("./Blogs")),
   case_studies: dynamic(() => import("./CaseStudies")),
   cta_section: dynamic(() => import("./CtaSection")),
+  faq: dynamic(() => import("./Faq")),
   hero: dynamic(() => import("./Hero")),
   process_time_line: dynamic(() => import("./ProcessTimeLine")),
   resources: dynamic(() => import("./Resources")),
