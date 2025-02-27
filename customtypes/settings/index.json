@@ -1,0 +1,144 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "our_services": {
+        "type": "Group",
+        "config": {
+          "label": "Our Services",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": ""
+              }
+            },
+            "link_to_services": {
+              "type": "Link",
+              "config": {
+                "label": "Link to services",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "company": {
+        "type": "Group",
+        "config": {
+          "label": "Company",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": ""
+              }
+            },
+            "link_to_company": {
+              "type": "Link",
+              "config": {
+                "label": "link to company",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "policies": {
+        "type": "Group",
+        "config": {
+          "label": "Policies",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": ""
+              }
+            },
+            "link_to_policies": {
+              "type": "Link",
+              "config": {
+                "label": "link to policies",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "contact_information": {
+        "type": "Group",
+        "config": {
+          "label": "Contact Information",
+          "repeat": true,
+          "fields": {
+            "information": {
+              "type": "StructuredText",
+              "config": {
+                "label": "information",
+                "placeholder": "",
+                "allowTargetBlank": false,
+                "single": "paragraph,strong"
+              }
+            },
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "label",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "tagline": {
+        "type": "StructuredText",
+        "config": {
+          "label": "tagline",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "work_with_us": {
+        "type": "Link",
+        "config": {
+          "label": "Work With Us",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "work_with_us_label": {
+        "type": "Text",
+        "config": {
+          "label": "Work With Us label",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

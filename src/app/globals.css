@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+[data-theme="light"] {
+  --background-color: #f8f8f8;
+  --text-color: #000000;
+}
+
+[data-theme="dark"] {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: grid;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.glass-container {
+  position: relative;
+}
+
+.glass-container::before {
+  @apply absolute -inset-[10px] -z-10 rounded-sm border border-slate-100/20 bg-slate-200/10 backdrop-blur-md;
+  content: "";
+}
+
+.signal-line {
+  --rotation: 90deg;
+  @apply h-[20px] w-[1.5px] bg-gradient-to-t md:h-[1.5px] md:w-[30px] lg:w-[40px] xl:w-[50px];
+  background-color: hsla(0, 0%, 100%, 0.1);
+  background-image: linear-gradient(var(--rotation),
+      rgba(255, 255, 255, 0) 50%,
+      #bfdbfe 50%,
+      rgba(255, 255, 255, 0) 70%);
+  background-size: 400% 400%;
+}
+
+@media (max-width: 767px) {
+  .signal-line {
+    --rotation: 0deg;
+  }
+}
+
+
+.burger {
+  position: relative;
+  width: 24px;
+  border: 0;
+}
+
+.burger,
+.burger::before,
+.burger::after {
+  display: block;
+  border-radius: 2px;
+  height: 2px;
+  background: var(--text-color);
+  transition: 0.3s;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.burger::before {
+  top: -8px;
+}
+
+.burger::after {
+  top: 8px;
+}
+
+.burger.burger-3::before,
+.burger.burger-3::after {
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+}
+
+.burger.burger-3.is-closed::before,
+.burger.burger-3.is-closed::after {
+  width: 15px;
+}
+
+.burger.burger-3.is-closed::before {
+  transform: rotate(-45deg) translate(-6px, -2px);
+}
+
+.burger.burger-3.is-closed::after {
+  transform: rotate(45deg) translate(-6px, 2px);
+}
+
+input, textarea {
+  background-color: var(--background-color);
+	@apply mt-1 block w-full md:w-[500px] px-3 py-3 border border-gray-500 focus:border-brand  rounded-md shadow-sm focus:outline-none  ;
+}
+
+.anchor-link {
+	
+	position: relative;
+}
+
+.anchor-link::after {
+	content: '';
+	position: absolute;
+	height: 1px;
+	left: 0;
+	bottom: 0rem;
+  
+	width: 100%;
+	background: var(--text-color);
+	transform: scaleX(0);
+  transform-origin: left;
+	transition: transform 100ms ease-in-out;
+}
+
+.anchor-link:hover::after {
+	transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchor-link {
+    /* Remove transitions or reduce their duration */
+    transition: none;
+  }
+}

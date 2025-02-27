@@ -1,0 +1,52 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Bottom"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ullamco magna irure magna. Irure pariatur voluptate cupidatat sunt cillum dolor officia culpa ad occaecat non laborum. Labore magna laborum adipisicing ullamco officia ad do aliqua mollit pariatur quis proident occaecat eu Lorem."
+						}
+					}
+				]
+			},
+			"blogs": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"blog",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "81f35125-1f4c-425e-8f95-a9ba3614f61a",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
