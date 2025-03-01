@@ -5,6 +5,7 @@ import Bounded from "@/Components/Bounded";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import ButtonLink from "@/Components/ButtonLink";
 import { createClient } from "@/prismicio";
+import clsx from "clsx";
 
 /**
  * Props for `Services`.
@@ -45,7 +46,7 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      
+
       <div className="flex justify-between lg:mt-16 w-full items-center">
         {isFilled.richText(slice.primary.heading) && (
           <h2 className="hero__heading text-balance text-2xl font-semibold md:font-medium md:text-5xl">
@@ -60,29 +61,47 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
         )}
       </div>
 
-      <div className="mt-10 grid md:gap-8 md:grid-cols-2">
+      <div className={clsx("mt-10 grid md:gap-8 ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-1' : 'md:grid-cols-2')}>
         {services.map(
           (service) =>
             service && (
-              <div key={service.id} className="flex bg-slate-950  text-white rounded-2xl flex-col p-4 lg:p-8 gap-4 md:gap-6 justify-center">
-                <div>
+              <div className={clsx("grid ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-2 w-full justify-items-stretch' : '')}>
 
-                  <PrismicNextImage  className="rounded-lg  h-20 w-20" field={service.data.icon} />
+                <div key={service.id} className="flex bg-slate-950  text-white rounded-2xl flex-col p-4 lg:p-8 gap-4 md:gap-6 justify-center">
+                  <div>
+
+                    <PrismicNextImage className="rounded-lg  h-20 w-20" field={service.data.icon} />
+                  </div>
+                  <h4 className="text-balance text-brand text-2xl font-medium md:text-3xl">
+
+                    <PrismicText field={service.data.service} />
+                  </h4>
+                  <p className="font-medium">
+
+                    <PrismicText field={service.data.description} />
+                  </p>
+
+                  <PrismicNextLink
+                    document={service}
+                    className=" text-accent lg:text-lg font-medium hover:underline"
+                  >
+                    {service.data.label}
+                  </PrismicNextLink>
                 </div>
-                <h4 className="text-balance text-brand text-2xl font-medium md:text-3xl">
+                <div key={service.id} className="hidden md:flex flex-col gap-4 justify-center ">
+                  <div>
 
-                  <PrismicText field={service.data.service} />
-                </h4>
-                <p className="font-medium">
+                    <PrismicNextImage className="rounded-lg  h-20 w-20" field={service.data.reviewer_image} />
+                  </div>
+                  <div className="text-balance  text-2xl font-medium md:text-3xl">
 
-                  <PrismicText field={service.data.description} />
-                </p>
-                <PrismicNextLink
-                  document={service}
-                  className=" text-accent lg:text-lg font-medium hover:underline"
-                >
-                   {service.data.label} 
-                </PrismicNextLink>
+                    <PrismicText field={service.data.review_comment} />
+                  </div>
+                  <p className="font-medium">
+
+                    <PrismicText field={service.data.review_name} />
+                  </p>
+                </div>
               </div>
             )
         )}

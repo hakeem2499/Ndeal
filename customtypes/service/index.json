@@ -62,6 +62,41 @@
           "single": "heading1,strong"
         }
       },
+      "what_we_did": {
+        "type": "StructuredText",
+        "config": {
+          "label": "What we did",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "review_name": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Review Name",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,list-item"
+        }
+      },
+      "review_comment": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Review Comment",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "reviewer_image": {
+        "type": "Image",
+        "config": {
+          "label": "Reviewer Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

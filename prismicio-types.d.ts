@@ -462,6 +462,50 @@ interface ServiceDocumentData {
   heading: prismic.RichTextField;
 
   /**
+   * What we did field in *service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.what_we_did
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  what_we_did: prismic.RichTextField;
+
+  /**
+   * Review Name field in *service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.review_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  review_name: prismic.RichTextField;
+
+  /**
+   * Review Comment field in *service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.review_comment
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  review_comment: prismic.RichTextField;
+
+  /**
+   * Reviewer Image field in *service*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.reviewer_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  reviewer_image: prismic.ImageField<never>;
+
+  /**
    * Slice Zone field in *service*
    *
    * - **Field Type**: Slice Zone
