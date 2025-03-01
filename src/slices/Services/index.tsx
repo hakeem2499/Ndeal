@@ -1,4 +1,4 @@
-import { FC, JSX } from "react";
+import { FC, JSX, SVGProps } from "react";
 import { Content, isFilled } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/Components/Bounded";
@@ -11,6 +11,13 @@ import clsx from "clsx";
  * Props for `Services`.
  */
 export type ServicesProps = SliceComponentProps<Content.ServicesSlice>;
+
+
+function CheckSquare(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256" {...props}><path fill="currentColor" d="M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16m-34.34 77.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32"></path></svg>
+  )
+}
 
 /**
  * Fetches service documents based on the slice items.
@@ -65,9 +72,9 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
         {services.map(
           (service) =>
             service && (
-              <div className={clsx("grid ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-2 w-full justify-items-stretch' : '')}>
+              <div key={service.id} className={clsx("grid ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-2 w-full gap-2 lg:gap-4 justify-items-stretch' : '')}>
 
-                <div key={service.id} className="flex bg-slate-950  text-white rounded-2xl flex-col p-4 lg:p-8 gap-4 md:gap-6 justify-center">
+                <div className="flex bg-slate-950  text-white rounded-2xl flex-col p-4 lg:p-8 gap-4 md:gap-6 justify-center">
                   <div>
 
                     <PrismicNextImage className="rounded-lg  h-20 w-20" field={service.data.icon} />
@@ -80,7 +87,20 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
 
                     <PrismicText field={service.data.description} />
                   </p>
-
+                  <div className={clsx("", slice.variation === 'servicePageServiceSlice' ? 'block' : 'hidden')}>
+                    <PrismicRichText components={{
+                      heading2: ({ children }) => (
+                        <h2 className="text-balance text-center text-5xl font-medium md:text-7xl">
+                          {children}
+                        </h2>
+                      ),
+                      em: ({ children }) => (
+                        <em className="bg-gradient-to-b inline-flex text-lg gap-4 py-2 from-yellow-100 to-yellow-500 bg-clip-text not-italic text-transparent">
+                          <span className="text-brand"><CheckSquare/></span>{children}
+                        </em>
+                      ),
+                    }} field={service.data.what_we_did} />
+                  </div>
                   <PrismicNextLink
                     document={service}
                     className=" text-accent lg:text-lg font-medium hover:underline"
@@ -88,12 +108,12 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
                     {service.data.label}
                   </PrismicNextLink>
                 </div>
-                <div key={service.id} className="hidden md:flex flex-col gap-4 justify-center ">
+                <div className={clsx("hidden md:flex flex-col items-end gap-4 justify-center ", slice.variation === 'servicePageServiceSlice' ? "flex" : "hidden")}>
                   <div>
 
-                    <PrismicNextImage className="rounded-lg  h-20 w-20" field={service.data.reviewer_image} />
+                    <PrismicNextImage className="h-40   w-40 object-cover rounded-md  border-none" field={service.data.reviewer_image} />
                   </div>
-                  <div className="text-balance  text-2xl font-medium md:text-3xl">
+                  <div className="text-balance text-end text-xl font-medium">
 
                     <PrismicText field={service.data.review_comment} />
                   </div>

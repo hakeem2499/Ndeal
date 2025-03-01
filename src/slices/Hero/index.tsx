@@ -7,6 +7,7 @@ import 'next-cloudinary/dist/cld-video-player.css';
 import Bounded from "@/Components/Bounded";
 import ButtonLink from "@/Components/ButtonLink";
 import { SpotlightHero } from "@/Components/ui/SpotLightHero";
+import Image from "next/image";
 
 /**
  * Props for `Hero`.
@@ -31,17 +32,19 @@ const Hero: FC<HeroProps> = ({ slice }) => {
         {/* Fallback Image */}
         {!isVideoLoaded && (
           <div className="absolute inset-0 z-[-40]">
-            <img
-              src="/path/to/fallback-image.jpg" //  fallback image 
+            <Image
+              src="public/NdealNextBlack.svg" //  fallback image 
               alt="Fallback Image"
-              className="w-full h-full object-cover"
+              width={150}
+              height={38}
+              className="w-full h-full object-contain opacity-50"
             />
           </div>
         )}
 
-        {/* Mobile Video */}
+        {/* Mobile Video
         <div className="block md:hidden">
-          {/* <CldVideoPlayer
+          <CldVideoPlayer
             id="mobile"
             className="z-[-50] opacity-70"
             loop={true}
@@ -53,11 +56,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             height="1920" // Portrait orientation for mobile
             src="HeroVideoMobileReal_brsnlr" //  mobile video's public ID
             onDataLoad={handleVideoLoad} // Trigger when video is loaded
-          /> */}
-        </div>
+          />
+        </div> */}
 
         {/* Desktop Video */}
-        {/* <div className="hidden md:block">
+        <div className="hidden md:block">
           <CldVideoPlayer
             id="medium"
             className="z-[-50] opacity-50"
@@ -68,10 +71,10 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             quality={100}
             width="1920"
             height="1080" // Landscape orientation for desktop
-            src="HeroVideoMediumReal_y0lszw" //  desktop video's public ID
+            src="herovideo_1_rfewc0" //  desktop video's public ID
             onDataLoad={handleVideoLoad} // Trigger when video is loaded
           />
-        </div> */}
+        </div>
       </div>
       1<SpotlightHero />
 
@@ -83,7 +86,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       >
         <div className="flex flex-col gap-4">
           {isFilled.richText(slice.primary.heading) && (
-            <h1 className="text-balance text-4xl mt-[25%] md:mt-[15%] font-semibold text-brand md:text-7xl">
+            <h1 className="text-balance text-4xl mt-[25%] lg:mt-[20%] font-semibold text-brand md:text-7xl">
               <PrismicText field={slice.primary.heading} />
             </h1>
           )}
