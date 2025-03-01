@@ -9,6 +9,7 @@ export const components = {
   cta_section: dynamic(() => import("./CtaSection")),
   faq: dynamic(() => import("./Faq")),
   hero: dynamic(() => import("./Hero")),
+  policy_section: dynamic(() => import("./PolicySection")),
   process_time_line: dynamic(() => import("./ProcessTimeLine")),
   resources: dynamic(() => import("./Resources")),
   rich_text: dynamic(() => import("./RichText")),

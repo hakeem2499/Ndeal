@@ -13,10 +13,12 @@
         }
       },
       "title": {
-        "type": "Text",
+        "type": "StructuredText",
         "config": {
           "label": "Title",
-          "placeholder": ""
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph"
         }
       },
       "slices": {
@@ -24,6 +26,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "policy_section": {
+              "type": "SharedSlice"
+            },
             "statistics": {
               "type": "SharedSlice"
             },

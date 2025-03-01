@@ -197,6 +197,7 @@ export type CaseStudyDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | PolicySectionSlice
   | StatisticsSlice
   | ServicesSlice
   | ResourcesSlice
@@ -212,13 +213,13 @@ interface PageDocumentData {
   /**
    * Title field in *Page*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: page.title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  title: prismic.KeyTextField;
+  title: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -1271,6 +1272,98 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *PolicySection → Default → Primary → Sections*
+ */
+export interface PolicySectionSliceDefaultPrimarySectionsItem {
+  /**
+   * Heading field in *PolicySection → Default → Primary → Sections*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: policy_section.default.primary.sections[].heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * body field in *PolicySection → Default → Primary → Sections*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: policy_section.default.primary.sections[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *PolicySection → Default → Primary*
+ */
+export interface PolicySectionSliceDefaultPrimary {
+  /**
+   * Heading field in *PolicySection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: policy_section.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *PolicySection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: policy_section.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Sections field in *PolicySection → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: policy_section.default.primary.sections[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  sections: prismic.GroupField<
+    Simplify<PolicySectionSliceDefaultPrimarySectionsItem>
+  >;
+}
+
+/**
+ * Default variation for PolicySection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PolicySectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PolicySectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PolicySection*
+ */
+type PolicySectionSliceVariation = PolicySectionSliceDefault;
+
+/**
+ * PolicySection Shared Slice
+ *
+ * - **API ID**: `policy_section`
+ * - **Description**: PolicySection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PolicySectionSlice = prismic.SharedSlice<
+  "policy_section",
+  PolicySectionSliceVariation
+>;
+
+/**
  * Item in *ProcessTimeLine → Default → Primary → Process*
  */
 export interface ProcessTimeLineSliceDefaultPrimaryProcessItem {
@@ -1535,6 +1628,51 @@ export interface ServicesSliceDefaultPrimaryServicesItem {
 }
 
 /**
+ * Item in *Services → CaseStudiesLookingLikeServices → Primary → Services*
+ */
+export interface ServicesSliceCaseStudiesLookingLikeServicesPrimaryServicesItem {
+  /**
+   * service field in *Services → CaseStudiesLookingLikeServices → Primary → Services*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.caseStudiesLookingLikeServices.primary.services[].service
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service: prismic.ContentRelationshipField<"service" | "case_study">;
+}
+
+/**
+ * Item in *Services → BlogLookingLikeServices → Primary → Services*
+ */
+export interface ServicesSliceBlogLookingLikeServicesPrimaryServicesItem {
+  /**
+   * service field in *Services → BlogLookingLikeServices → Primary → Services*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.blogLookingLikeServices.primary.services[].service
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service: prismic.ContentRelationshipField<"service" | "case_study">;
+}
+
+/**
+ * Item in *Services → ServicePageServiceSlice → Primary → Services*
+ */
+export interface ServicesSliceServicePageServiceSlicePrimaryServicesItem {
+  /**
+   * service field in *Services → ServicePageServiceSlice → Primary → Services*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.servicePageServiceSlice.primary.services[].service
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  service: prismic.ContentRelationshipField<"service">;
+}
+
+/**
  * Primary content in *Services → Default → Primary*
  */
 export interface ServicesSliceDefaultPrimary {
@@ -1595,9 +1733,194 @@ export type ServicesSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Services → CaseStudiesLookingLikeServices → Primary*
+ */
+export interface ServicesSliceCaseStudiesLookingLikeServicesPrimary {
+  /**
+   * Heading field in *Services → CaseStudiesLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.caseStudiesLookingLikeServices.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Link field in *Services → CaseStudiesLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.caseStudiesLookingLikeServices.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * label field in *Services → CaseStudiesLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.caseStudiesLookingLikeServices.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Services field in *Services → CaseStudiesLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.caseStudiesLookingLikeServices.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<
+    Simplify<ServicesSliceCaseStudiesLookingLikeServicesPrimaryServicesItem>
+  >;
+}
+
+/**
+ * CaseStudiesLookingLikeServices variation for Services Slice
+ *
+ * - **API ID**: `caseStudiesLookingLikeServices`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceCaseStudiesLookingLikeServices =
+  prismic.SharedSliceVariation<
+    "caseStudiesLookingLikeServices",
+    Simplify<ServicesSliceCaseStudiesLookingLikeServicesPrimary>,
+    never
+  >;
+
+/**
+ * Primary content in *Services → BlogLookingLikeServices → Primary*
+ */
+export interface ServicesSliceBlogLookingLikeServicesPrimary {
+  /**
+   * Heading field in *Services → BlogLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.blogLookingLikeServices.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Link field in *Services → BlogLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.blogLookingLikeServices.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * label field in *Services → BlogLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.blogLookingLikeServices.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Services field in *Services → BlogLookingLikeServices → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.blogLookingLikeServices.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<
+    Simplify<ServicesSliceBlogLookingLikeServicesPrimaryServicesItem>
+  >;
+}
+
+/**
+ * BlogLookingLikeServices variation for Services Slice
+ *
+ * - **API ID**: `blogLookingLikeServices`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceBlogLookingLikeServices = prismic.SharedSliceVariation<
+  "blogLookingLikeServices",
+  Simplify<ServicesSliceBlogLookingLikeServicesPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Services → ServicePageServiceSlice → Primary*
+ */
+export interface ServicesSliceServicePageServiceSlicePrimary {
+  /**
+   * Heading field in *Services → ServicePageServiceSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.servicePageServiceSlice.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Link field in *Services → ServicePageServiceSlice → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.servicePageServiceSlice.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * label field in *Services → ServicePageServiceSlice → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.servicePageServiceSlice.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Services field in *Services → ServicePageServiceSlice → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.servicePageServiceSlice.primary.services[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  services: prismic.GroupField<
+    Simplify<ServicesSliceServicePageServiceSlicePrimaryServicesItem>
+  >;
+}
+
+/**
+ * ServicePageServiceSlice variation for Services Slice
+ *
+ * - **API ID**: `servicePageServiceSlice`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceServicePageServiceSlice = prismic.SharedSliceVariation<
+  "servicePageServiceSlice",
+  Simplify<ServicesSliceServicePageServiceSlicePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Services*
  */
-type ServicesSliceVariation = ServicesSliceDefault;
+type ServicesSliceVariation =
+  | ServicesSliceDefault
+  | ServicesSliceCaseStudiesLookingLikeServices
+  | ServicesSliceBlogLookingLikeServices
+  | ServicesSliceServicePageServiceSlice;
 
 /**
  * Services Shared Slice
@@ -1837,6 +2160,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PolicySectionSlice,
+      PolicySectionSliceDefaultPrimarySectionsItem,
+      PolicySectionSliceDefaultPrimary,
+      PolicySectionSliceVariation,
+      PolicySectionSliceDefault,
       ProcessTimeLineSlice,
       ProcessTimeLineSliceDefaultPrimaryProcessItem,
       ProcessTimeLineSliceDefaultPrimary,
@@ -1854,8 +2182,17 @@ declare module "@prismicio/client" {
       ServicesSlice,
       ServicesSliceDefaultPrimaryServicesItem,
       ServicesSliceDefaultPrimary,
+      ServicesSliceCaseStudiesLookingLikeServicesPrimaryServicesItem,
+      ServicesSliceCaseStudiesLookingLikeServicesPrimary,
+      ServicesSliceBlogLookingLikeServicesPrimaryServicesItem,
+      ServicesSliceBlogLookingLikeServicesPrimary,
+      ServicesSliceServicePageServiceSlicePrimaryServicesItem,
+      ServicesSliceServicePageServiceSlicePrimary,
       ServicesSliceVariation,
       ServicesSliceDefault,
+      ServicesSliceCaseStudiesLookingLikeServices,
+      ServicesSliceBlogLookingLikeServices,
+      ServicesSliceServicePageServiceSlice,
       ShowCaseSlice,
       ShowCaseSliceDefaultPrimary,
       ShowCaseSliceVariation,

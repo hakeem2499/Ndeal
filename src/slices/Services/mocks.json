@@ -39,8 +39,8 @@
 							[
 								"service",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "e225cf96-4437-4b0b-96e7-b61f003cdab6",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "DocumentLink",
 										"id": "mock_document_id"
@@ -53,5 +53,179 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "caseStudiesLookingLikeServices",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Vegetable"
+						}
+					}
+				]
+			},
+			"link": {
+				"key": "60ece6fa-07ab-4e9e-b3c2-4ea210e8dd34",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "judge"
+				}
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "blow",
+				"type": "Text"
+			},
+			"services": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"service",
+								{
+									"key": "6b6c1556-56ed-4f24-8d92-1b79826ef2c0",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "blogLookingLikeServices",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Brain"
+						}
+					}
+				]
+			},
+			"link": {
+				"key": "3707b6b4-b97d-4cad-ac51-1182104acbfc",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "prevent"
+				}
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "milk",
+				"type": "Text"
+			},
+			"services": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"service",
+								{
+									"key": "33098f93-b673-41be-94c1-fa23b6c7b176",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "servicePageServiceSlice",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Chest"
+						}
+					}
+				]
+			},
+			"link": {
+				"key": "f7358a9a-fdeb-44cb-ab4c-be9cbf21ca55",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "ready"
+				}
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "pool",
+				"type": "Text"
+			},
+			"services": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"service",
+								{
+									"key": "a2249fcf-f8dd-4fdb-8be8-9ead99444d19",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]
