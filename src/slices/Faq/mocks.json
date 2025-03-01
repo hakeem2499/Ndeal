@@ -51,6 +51,17 @@
 						]
 					}
 				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do dolore eu ad commodo fugiat eu esse. Aute aliqua amet consequat laboris est."
+						}
+					}
+				]
 			}
 		},
 		"items": []

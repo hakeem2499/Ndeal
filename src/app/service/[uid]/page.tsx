@@ -21,8 +21,9 @@ const fetchServicePage = async (uid: string) => {
 /**
  * Service Page Component.
  */
-export default async function Page({ params }: { params: Params }) {
-    const page = await fetchServicePage(params.uid);
+export default async function Page({ params }: { params: Promise<Params> }) {
+    const resolvedParams = await params; // Await params to resolve the Promise
+    const page = await fetchServicePage(resolvedParams.uid);
 
     return (
         <Bounded>
@@ -50,9 +51,10 @@ export default async function Page({ params }: { params: Params }) {
 /**
  * Generates metadata for the service page.
  */
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+    const resolvedParams = await params; // Await params to resolve the Promise
     const client = createClient();
-    const page = await client.getByUID('service', params.uid).catch(() => null);
+    const page = await client.getByUID('service', resolvedParams.uid).catch(() => null);
 
     if (!page) {
         return {

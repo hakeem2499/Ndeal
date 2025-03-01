@@ -21,8 +21,9 @@ const fetchResourcePage = async (uid: string) => {
 /**
  * Resource Page Component.
  */
-export default async function Page({ params }: { params: Params }) {
-    const page = await fetchResourcePage(params.uid);
+export default async function Page({ params }: { params: Promise<Params> }) {
+    const resolvedParams = await params; // Await params to resolve the Promise
+    const page = await fetchResourcePage(resolvedParams.uid);
 
     return (
         <Bounded>
@@ -50,9 +51,10 @@ export default async function Page({ params }: { params: Params }) {
 /**
  * Generates metadata for the Resource page.
  */
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+    const resolvedParams = await params; // Await params to resolve the Promise
     const client = createClient();
-    const page = await client.getByUID('resource', params.uid).catch(() => null);
+    const page = await client.getByUID('resource', resolvedParams.uid).catch(() => null);
 
     if (!page) {
         return {

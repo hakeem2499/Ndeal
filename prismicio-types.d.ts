@@ -385,6 +385,7 @@ export type ResourceDocument<Lang extends string = string> =
   >;
 
 type ServiceDocumentDataSlicesSlice =
+  | FaqSlice
   | RichTextSlice
   | ShowCaseSlice
   | ApproachSlice;
@@ -1152,6 +1153,16 @@ export interface FaqSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   questions: prismic.GroupField<Simplify<FaqSliceDefaultPrimaryQuestionsItem>>;
+
+  /**
+   * body field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
 }
 
 /**

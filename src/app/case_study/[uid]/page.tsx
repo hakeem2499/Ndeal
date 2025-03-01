@@ -21,8 +21,9 @@ const fetchCaseStudyPage = async (uid: string) => {
 /**
  * CaseStudy Page Component.
  */
-export default async function Page({ params }: { params: Params }) {
-    const page = await fetchCaseStudyPage(params.uid);
+export default async function Page({ params }: { params: Promise<Params> }) {
+    const resolvedParams = await params; // Await params to resolve the Promise
+    const page = await fetchCaseStudyPage(resolvedParams.uid);
 
     return (
         <Bounded>
@@ -50,9 +51,10 @@ export default async function Page({ params }: { params: Params }) {
 /**
  * Generates metadata for the. page.
  */
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+    const resolvedParams = await params; // Await params to resolve the Promise
     const client = createClient();
-    const page = await client.getByUID('case_study', params.uid).catch(() => null);
+    const page = await client.getByUID('case_study', resolvedParams.uid).catch(() => null);
 
     if (!page) {
         return {

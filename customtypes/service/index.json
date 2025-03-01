@@ -67,6 +67,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "faq": {
+              "type": "SharedSlice"
+            },
             "rich_text": {
               "type": "SharedSlice"
             },

@@ -41,7 +41,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
         {/* Mobile Video */}
         <div className="block md:hidden">
-          <CldVideoPlayer
+          {/* <CldVideoPlayer
             id="mobile"
             className="z-[-50] opacity-70"
             loop={true}
@@ -53,7 +53,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             height="1920" // Portrait orientation for mobile
             src="HeroVideoMobileReal_brsnlr" //  mobile video's public ID
             onDataLoad={handleVideoLoad} // Trigger when video is loaded
-          />
+          /> */}
         </div>
 
         {/* Desktop Video */}
@@ -72,8 +72,8 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             onDataLoad={handleVideoLoad} // Trigger when video is loaded
           />
         </div> */}
-        <SpotlightHero/>
       </div>
+      1<SpotlightHero />
 
       {/* Hero Content */}
       <Bounded
