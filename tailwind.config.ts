@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         background: "#000000",
+        accent: "#c90baa",
         foreground: "var(--text-color)",
         brand: "#ff8c00",
         brandWhite: "#f8f8f8",

@@ -79,7 +79,7 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
                 </p>
                 <PrismicNextLink
                   document={service}
-                  className=" text-brand hover:underline"
+                  className=" text-accent lg:text-lg font-medium hover:underline"
                 >
                    {service.data.label} 
                 </PrismicNextLink>

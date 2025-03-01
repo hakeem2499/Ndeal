@@ -74,9 +74,12 @@ export default function ProcessTimeLineClient({ slice }: { slice: Content.Proces
                                     {item.label}
                                 </h3>
                                 <div className="flex flex-col items-start gap-4">
-                                    <PrismicRichText field={item.title} />
+                                    <h5 className="text-xl text-brand font-medium text-balance">
+
+                                        <PrismicText field={item.title} />
+                                    </h5>
                                     <PrismicRichText field={item.body} />
-                                    <PrismicNextImage quality={100} className="h-30 w-auto" field={item.image} />
+                                    <PrismicNextImage quality={100} className="h-[500px] rounded-lg border-4 border-grey-900 w-auto" field={item.image} />
                                 </div>
                             </div>
                         </div>
