@@ -1,4 +1,5 @@
 import Bounded from '@/Components/Bounded';
+import StarRating from '@/Components/ui/StarRating';
 import { createClient } from '@/prismicio';
 import { components } from '@/slices';
 import { asText } from '@prismicio/client';
@@ -17,6 +18,7 @@ const fetchServicePage = async (uid: string) => {
     const client = createClient();
     return await client.getByUID('service', uid).catch(() => notFound());
 };
+
 
 /**
  * Service Page Component.
@@ -43,6 +45,23 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </div>
             <div className="mx-auto">
                 <SliceZone slices={page.data.slices} components={components} />
+            </div>
+            <div className="flex flex-col gap-8 lg:p-4 glass-container rounded-lg   md:flex-row items-center  justify-center mx-auto w-full">
+                <div>
+
+                    <PrismicNextImage className="h-40   w-40 object-cover rounded-md  border-none" field={page.data.reviewer_image} />
+                </div>
+                <div className="flex  flex-col gap-4 md:gap-8 items-center w-full">
+                    <div className="text-balance text-center  text-xl max-w-xl font-medium">
+
+                        <PrismicText field={page.data.review_comment} />
+                    </div>
+
+                    <p className="justify-between md:gap-8 lg:gap-16 flex-col md:flex-row flex items-center  font-medium">
+                        <PrismicText  field={page.data.review_name} />
+                        <span className='text-xl text-brand'><StarRating rating={5}/></span>
+                    </p>
+                </div>
             </div>
         </Bounded>
     );

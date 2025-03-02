@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
-import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
+import {  PrismicText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/Components/Bounded";
 
 /**
@@ -31,9 +31,9 @@ const PolicySection: FC<PolicySectionProps> = ({ slice }) => {
         </p>
       )}
 
-      {slice.primary.sections.map((item) => (
+      {slice.primary.sections.map((item, index) => (
 
-        <div className="flex flex-col gap-4 md:gap-8 justify-between w-full">
+        <div key={index} className="flex flex-col gap-4 md:gap-8 justify-between w-full">
           {isFilled.richText(item.heading) && (
             <h1 className="text-2xl md:text-4xl max-w-6xl font-semibold text-balance">
 

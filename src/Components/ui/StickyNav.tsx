@@ -41,6 +41,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
         isServiceLink: boolean = false
     ) => {
         return items.map((item) => (
+
             <PrismicNextLink
                 className={clsx(
                     'block border-b md:border-none hover:text-brand transition-colors duration-200 border-slate-400/20 text-2xl md:text-lg'
@@ -86,7 +87,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
             <div
                 onMouseEnter={toggleOpen}
                 onMouseLeave={closeAllPopups}
-                className="fixed top-0 w-full z-50"
+                className="fixed top-0 w-full  z-50"
             >
                 <motion.div
                     initial="hidden"
@@ -114,7 +115,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                             <div className="hidden md:flex items-center space-x-5 text-center">
                                 <button
                                     onMouseEnter={() => setShowServices(true)}
-                                    
+
                                     className="text-lg inline-flex items-center gap-1"
                                 >
                                     <span>Our Services</span>
@@ -131,7 +132,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                                     </svg>
                                 </button>
                                 {/* Company Links */}
-                                <div onMouseEnter={() => setShowServices(false) } className="flex gap-8">
+                                <div onMouseEnter={() => setShowServices(false)} className="flex gap-8">
                                     {renderNavLinks(settings.data.company)}
                                 </div>
                             </div>

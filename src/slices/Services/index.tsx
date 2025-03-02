@@ -95,7 +95,7 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
                         </h2>
                       ),
                       em: ({ children }) => (
-                        <em className="bg-gradient-to-b inline-flex text-lg gap-4 py-2 from-yellow-100 to-yellow-500 bg-clip-text not-italic text-transparent">
+                        <em className="bg-gradient-to-b inline-flex text-lg gap-4 py-2 from-brandWhite to-brand  bg-clip-text not-italic text-transparent">
                           <span className="text-brand"><CheckSquare/></span>{children}
                         </em>
                       ),
@@ -108,7 +108,7 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
                     {service.data.label}
                   </PrismicNextLink>
                 </div>
-                <div className={clsx("hidden md:flex flex-col items-end gap-4 justify-center ", slice.variation === 'servicePageServiceSlice' ? "flex" : "hidden")}>
+                <div className={clsx("  flex-col items-end gap-4 justify-center ", slice.variation === 'servicePageServiceSlice' ? "md:flex" : "hidden")}>
                   <div>
 
                     <PrismicNextImage className="h-40   w-40 object-cover rounded-md  border-none" field={service.data.reviewer_image} />
