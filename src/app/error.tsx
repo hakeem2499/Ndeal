@@ -1,6 +1,7 @@
 // app/error.tsx
 "use client"; // Error components must be Client Components
 
+import Bounded from "@/Components/Bounded";
 import { useEffect } from "react";
 
 interface ErrorProps {
@@ -15,7 +16,7 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
+    <Bounded >
       <h1>Something went wrong!</h1>
       <p>{error.message}</p>
       {error.digest && <p>Error Digest: {error.digest}</p>}
@@ -33,6 +34,6 @@ export default function Error({ error, reset }: ErrorProps) {
       >
         Try Again
       </button>
-    </div>
+    </Bounded>
   );
 }

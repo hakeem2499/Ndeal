@@ -56,11 +56,11 @@ const ShowCase: FC<ShowCaseProps> = ({ slice }) => {
         <div className=" glass-container mt-16 w-fit ">
 
           <PrismicNextImage
-            className="rounded-lg"
+            className="rounded-lg max-h-screen w-fit"
             field={slice.primary.image}
             priority
             quality={100}
-            sizes="100vw"
+            sizes="80vw"
           />
         </div>
       )}

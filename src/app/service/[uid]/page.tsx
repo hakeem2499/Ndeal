@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 </p>
                 <PrismicNextImage
                     field={page.data.image}
-                    className="rounded-lg "
+                    className="rounded-lg h-auto w-fit object-cover"
                     quality={100}
                 />
             </div>
