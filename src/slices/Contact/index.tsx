@@ -19,7 +19,7 @@ const Contact: FC<ContactProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
     >
       {isFilled.richText(slice.primary.heading) && (
-        <h1 className="text-2xl md:text-5xl">
+        <h1 className="text-3xl mt-16 md:mt-24 font-semibold md:text-5xl">
           <PrismicText field={slice.primary.heading} />
         </h1>
       )}

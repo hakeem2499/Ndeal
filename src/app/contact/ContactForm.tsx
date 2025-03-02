@@ -90,7 +90,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="w-full min-h-screen mx-auto mt-24 p-6 rounded-lg shadow-lg">
+        <div className="w-full  mx-auto mt-24 p-6 rounded-lg shadow-lg">
             
             <form onSubmit={handleSubmit(onSubmit)}>
                 <AnimatePresence mode="wait">
