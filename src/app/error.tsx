@@ -24,7 +24,7 @@ export default function Error({ error, reset }: ErrorProps) {
         style={{
           marginTop: "1rem",
           padding: "0.5rem 1rem",
-          backgroundColor: "#0070f3",
+          backgroundColor: "var(--color-primary)",
           color: "white",
           border: "none",
           borderRadius: "4px",
