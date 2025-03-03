@@ -2,7 +2,7 @@
 import React, { SVGProps, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import Bounded from "@/Components/Bounded";
+
 import { CarouselControl } from "@/slices/Resources/ResourcesClient";
 import { useRouter } from "next/navigation";
 
@@ -74,7 +74,7 @@ const ContactForm = () => {
             if (response.ok) {
                 alert("Thank you for contacting us! We'll get back to you soon.");
                 success = true;
-                let url = `/contact/success?name=${Name}&success=${success.toString()}`;
+                const url = `/contact/success?name=${Name}&success=${success.toString()}`;
                 router.push(url);
                 reset(); // Reset form fields
                 setStep(1); // Reset to the first step
@@ -91,7 +91,7 @@ const ContactForm = () => {
 
     return (
         <div className="w-full  mx-auto mt-24 p-6 rounded-lg shadow-lg">
-            
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 <AnimatePresence mode="wait">
                     {step === 1 && (
@@ -234,7 +234,7 @@ const ContactForm = () => {
                                     aria-disabled={isLoading}
                                     aria-busy={isLoading}
                                 >
-                                    {isLoading ? <span><Spinner/></span> : "Submit"}
+                                    {isLoading ? <span><Spinner /></span> : "Submit"}
                                 </button>
                             </div>
                         </motion.div>
