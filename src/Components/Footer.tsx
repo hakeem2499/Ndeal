@@ -121,7 +121,7 @@ export async function Footer() {
                             <a href="/contact" className="inline-flex gap-2 items-center ">
                                 <span><ContactIcon /></span>Contact us
                             </a>
-                            <a href="/contact" className="inline-flex gap-2 items-center ">
+                            <a href="/" className="inline-flex gap-2 items-center ">
                                 <span><CareerIcon /></span>Careers
                             </a>
                         </div>
