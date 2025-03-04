@@ -68,7 +68,7 @@ const Services: FC<ServicesProps> = async ({ slice }: ServicesProps): Promise<JS
         )}
       </div>
 
-      <div className={clsx("mt-10 grid md:gap-8 ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-1' : 'md:grid-cols-2')}>
+      <div className={clsx("mt-10 grid gap-4 md:gap-8 ", slice.variation === 'servicePageServiceSlice' ? 'md:grid-cols-1' : 'md:grid-cols-2')}>
         {services.map(
           (service) =>
             service && (
