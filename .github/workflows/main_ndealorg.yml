@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - ndealwebpage
+name: Build and deploy Node.js app to Azure Web App - NdealOrg
 
 on:
   push:
@@ -65,15 +65,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7354998A2A19454F9EE30EDB5A82CF3E }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B583E510FCE44833A9A4982466F5FA88 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C1F0B36DD478446DB050724CFAEA4797 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_986F0D4CC0B6437C8A3163DECF6BAB75 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CA72FB129D44476895E0C19DF1B2503A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FD1CCF1A982E4E7CB3E6B1D8D4DCDD87 }}
 
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: "ndealwebpage"
+          app-name: "ndealorg"
           slot-name: "Production"
           package: .
 
@@ -83,7 +83,7 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/main_ndealwebpage.yml/dispatches" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/main_ndealorg.yml/dispatches" \
             -d '{"ref":"main"}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
