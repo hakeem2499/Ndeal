@@ -5,6 +5,7 @@ import { PrismicNextLink } from '@prismicio/next';
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from '@prismicio/react';
 import Bounded from './Bounded';
+import Image from "next/image";
 
 
 function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
@@ -41,16 +42,16 @@ function TwitterIcon(props: SVGProps<SVGSVGElement>) {
                 <clipPath id="b9b682346b">
                     <path
                         d="M 3.699219 5.128906 L 31.824219 5.128906 L 31.824219 30.292969 L 3.699219 30.292969 Z M 3.699219 5.128906 "
-                        clip-rule="nonzero"
+                        clipRule="nonzero"
                     />
                 </clipPath>
             </defs>
-            <g clip-path="url(#b9b682346b)">
+            <g clipPath="url(#b9b682346b)">
                 <path
                     fill="#ffff"
                     d="M 25.839844 5.128906 L 30.128906 5.128906 L 20.757812 15.808594 L 31.824219 30.292969 L 23.128906 30.292969 L 16.351562 21.511719 L 8.558594 30.292969 L 4.265625 30.292969 L 14.316406 18.882812 L 3.703125 5.128906 L 12.625 5.128906 L 18.78125 13.179688 Z M 24.3125 27.71875 L 26.6875 27.71875 L 11.324219 7.53125 L 8.726562 7.53125 Z M 24.3125 27.71875 "
-                    fill-opacity="1"
-                    fill-rule="nonzero"
+                    fillOpacity="1"
+                    fillRule="nonzero"
                 />
             </g>
         </svg>
@@ -58,6 +59,19 @@ function TwitterIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 
+
+function ContactIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256" {...props}><path fill="currentColor" d="M224 48H32a8 8 0 0 0-8 8v136a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a8 8 0 0 0-8-8m-8 144H40V74.19l82.59 75.71a8 8 0 0 0 10.82 0L216 74.19z"></path></svg>
+    )
+}
+
+
+function CareerIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256" {...props}><path fill="currentColor" d="M216 64h-40a48 48 0 0 0-96 0H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16m-88-32a32 32 0 0 1 32 32H96a32 32 0 0 1 32-32"></path></svg>
+    )
+}
 
 export async function Footer() {
     const client = createClient();
@@ -89,9 +103,33 @@ export async function Footer() {
                         Automate Today <br /> Know What's Next
                     </em>
                 </div>
+                <div className="flex flex-col border-b border-gray-600 pb-4 md:pb-0 w-full">
 
-                {/* Separator */}
-                <div className="w-full border border-r-transparent border-l-transparent border-gray-600" />
+                    <div className="flex flex-col gap-4 md:gap-0  md:flex-row justify-between w-full md:items-center">
+                        <div className="w-full md:w-fit border-b  md:border-none py-2 md:py-0 border-gray-600">
+
+                            <Image
+
+                                src="/NdealLogoWithTm.svg"
+                                alt="NdealLogo logo"
+                                width={130}
+                                height={38}
+                                priority
+                            />
+                        </div>
+                        <div className="flex justify-center w-full md:w-fit md:justify-between gap-8 items-center">
+                            <a href="/contact" className="inline-flex gap-2 items-center ">
+                                <span><ContactIcon /></span>Contact us
+                            </a>
+                            <a href="/contact" className="inline-flex gap-2 items-center ">
+                                <span><CareerIcon /></span>Careers
+                            </a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
 
 
 
@@ -132,12 +170,12 @@ export async function Footer() {
                             <TwitterIcon />
                         </a>
                     </div>
-                    <ul className="flex  text-gray-500 hover:text-gray-200 text-xs gap-4 justify-center">
+                    <ul className="flex   text-xs gap-4 justify-center">
                         {settings.data.policies.map((item) => (
                             <li key={item.label || 'policy-item'}>
                                 <PrismicNextLink
                                     field={item.link_to_policies}
-                                    className="inline-flex items-center"
+                                    className="inline-flex text-gray-500 hover:text-gray-200 items-center"
                                 >
                                     {item.label}
                                 </PrismicNextLink>
@@ -147,9 +185,9 @@ export async function Footer() {
 
                 </div>
             </footer>
-            
-                <p className="mx-auto text-xs gap-2 inline-flex items-center"><span><Copyright/></span> 2024-2025 Ndeal. All Right Reserved</p>
-            
+
+            <p className="mx-auto text-xs gap-2 inline-flex items-center"><span><Copyright /></span> 2024-2025 Ndeal. All Right Reserved</p>
+
         </Bounded>
     );
 }
