@@ -1,6 +1,6 @@
 // app/components/Footer.tsx (or wherever you place it)
 import React, { SVGProps } from "react";
-import { asLink, Content, KeyTextField, LinkField } from '@prismicio/client';
+import {  KeyTextField, LinkField } from '@prismicio/client';
 import { PrismicNextLink } from '@prismicio/next';
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from '@prismicio/react';
@@ -125,8 +125,8 @@ export async function Footer() {
                                 <span><CareerIcon /></span>Careers
                             </a>
                         </div>
-                        
-                        
+
+
                     </div>
                 </div>
 
