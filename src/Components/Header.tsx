@@ -1,5 +1,4 @@
 import { createClient } from '@/prismicio';
-import NavBar from './NavBar';
 import React from 'react'
 import StickyNav from './ui/StickyNav';
 
