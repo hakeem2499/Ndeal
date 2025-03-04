@@ -7,7 +7,7 @@ import { PrismicNextLink } from '@prismicio/next';
 import Image from "next/image";
 import ButtonLink from '../ButtonLink';
 import { motion, Variants } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBar from '../SideBar';
 import ThemeToggleSwitch from './ThemeSwitch';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -19,9 +19,25 @@ type Props = {
 const StickyNav: React.FC<Props> = ({ settings }) => {
     const [open, setOpen] = useState<boolean>(false);
     const [showServices, setShowServices] = useState<boolean>(false);
-    const [showSidebar, setShowSidebar] = useState<boolean>(false); // State for sidebar visibility
+    const [showSidebar, setShowSidebar] = useState<boolean>(false);
+    const [isAtTop, setIsAtTop] = useState<boolean>(true); // Track if we're at the top
     const pathname = usePathname();
     const { theme } = useTheme();
+
+    // Effect to detect scroll position
+    useEffect(() => {
+        const handleScroll = () => {
+            // Check if scroll position is at the top (within a small threshold)
+            setIsAtTop(window.scrollY <= 10); // Adjust threshold as needed
+        };
+
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+
+        // Cleanup listener on unmount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleOpen = () => setOpen(true);
     const mobileToggleOpen = () => setOpen(!open);
@@ -35,13 +51,25 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
         setShowSidebar(!showSidebar);
     };
 
+    // Only trigger dropdown if at the top
+    const handleMouseEnter = () => {
+        if (isAtTop) {
+            toggleOpen();
+        }
+    };
+
+    const handleServiceMouseEnter = () => {
+        if (isAtTop) {
+            setShowServices(true);
+        }
+    };
+
     // Helper function to render navigation links
     const renderNavLinks = (
         items: { label: KeyTextField; link_to_services?: LinkField; link_to_company?: LinkField }[],
         isServiceLink: boolean = false
     ) => {
         return items.map((item) => (
-
             <PrismicNextLink
                 className={clsx(
                     'block border-b md:border-none hover:text-brand transition-colors duration-200 border-slate-400/20 text-2xl md:text-lg'
@@ -71,7 +99,6 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
         visible: { opacity: 1 }
     };
 
-    // Animation variants for expanding rows
     const expandRowVariants: Variants = {
         hidden: { opacity: 0, y: 50 },
         visible: (i: number) => ({
@@ -83,11 +110,10 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
 
     return (
         <>
-            {/* Wrapper div to handle hover events for the entire navbar */}
             <div
-                onMouseEnter={toggleOpen}
+                onMouseEnter={handleMouseEnter} // Only open if at top
                 onMouseLeave={closeAllPopups}
-                className="fixed top-0 w-full  z-50"
+                className="fixed top-0 w-full z-50"
             >
                 <motion.div
                     initial="hidden"
@@ -98,7 +124,6 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                     <div className={clsx("flex flex-col", open ? 'h-auto' : 'h-10')}>
                         {/* Top Row: Logo, Desktop Navigation, and Menu Button */}
                         <div className="flex justify-between items-center">
-                            {/* Logo */}
                             <Link className="z-50" onClick={() => setOpen(false)} href="/">
                                 <Image
                                     className={clsx(theme === 'light' ? 'invert' : '')}
@@ -114,8 +139,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                             {/* Desktop Navigation */}
                             <div className="hidden md:flex items-center space-x-5 text-center">
                                 <button
-                                    onMouseEnter={() => setShowServices(true)}
-
+                                    onMouseEnter={handleServiceMouseEnter} // Only show services if at top
                                     className="text-lg inline-flex items-center gap-1"
                                 >
                                     <span>Our Services</span>
@@ -131,7 +155,6 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                                         />
                                     </svg>
                                 </button>
-                                {/* Company Links */}
                                 <div onMouseEnter={() => setShowServices(false)} className="flex gap-8">
                                     {renderNavLinks(settings.data.company)}
                                 </div>
@@ -146,7 +169,6 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                                 >
                                     {settings.data.work_with_us_label}
                                 </ButtonLink>
-
                                 <button
                                     className="block p-2 z-50 text-hidden text-3xl text-white md:hidden"
                                     onClick={mobileToggleOpen}
@@ -161,21 +183,20 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                         <motion.div
                             className={clsx('md:hidden flex flex-col py-4 gap-6 transition-transform duration-500', open ? "translate-y-[0%]" : "translate-y-[-100%]")}
                             variants={{
-                                visible: {
-                                    transition: {
-                                        staggerChildren: 0.4
-                                    }
-                                }
+                                visible: { transition: { staggerChildren: 0.4 } }
                             }}
                             animate={open ? 'visible' : 'hidden'}
-                            initial="hidden">
+                            initial="hidden"
+                        >
                             <button
                                 onClick={toggleSidebar}
                                 className={clsx("text-2xl text-brand text-left", open ? "block" : "hidden")}
                             >
-                                Our Services &rarr;
+                                Our Services →
                             </button>
-                            {renderNavLinks(settings.data.company).map((item, index) => (<motion.li key={index} variants={menuStaggeredVariant}>{item}</motion.li>))}
+                            {renderNavLinks(settings.data.company).map((item, index) => (
+                                <motion.li key={index} variants={menuStaggeredVariant}>{item}</motion.li>
+                            ))}
                         </motion.div>
 
                         {/* Expanded Content: Services or Work With Us Desktop Button */}
@@ -205,7 +226,7 @@ const StickyNav: React.FC<Props> = ({ settings }) => {
                 </motion.div>
             </div>
 
-            {/* Render the SideBar component */}
+            {/* Sidebar */}
             <SideBar showPopup={showSidebar} onClose={toggleSidebar}>
                 {renderNavLinks(settings.data.our_services, true)}
             </SideBar>

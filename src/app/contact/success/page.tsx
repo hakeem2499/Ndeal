@@ -1,23 +1,17 @@
-// success/page.tsx
+// app/contact/success/page.tsx
 import React from "react";
 import Bounded from "@/Components/Bounded";
 import { Spotlight } from "@/Components/ui/SpotLight";
 
-// Define the props type for the page component
 interface SuccessPageProps {
-  searchParams?: {
-    name?: string;
-    success?: string;
-  };
+  searchParams: Record<string, string | undefined>; // Alternative syntax, same meaning
 }
 
-// Explicitly mark the page as dynamic
 export const dynamic = "force-dynamic";
 
-// Server Component: no "use client"
 const SuccessPage: React.FC<SuccessPageProps> = ({ searchParams }) => {
-  const name = searchParams?.name?.toUpperCase() || "";
-  const success = searchParams?.success === "true";
+  const name = (searchParams.name ?? "").toUpperCase(); // ?? is more explicit than || for null/undefined
+  const success = searchParams.success === "true";
 
   return (
     <Bounded className="lg:h-screen w-full mt-16 rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
@@ -28,7 +22,7 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ searchParams }) => {
             Thank You {name}
           </h1>
           <p className="mt-4 font-medium text-base text-neutral-300 max-w-lg md:text-lg text-center mx-auto">
-            We've received your message and our Team will be in touch soon
+            We’ve received your message and our Team will be in touch soon
           </p>
         </div>
       )}
